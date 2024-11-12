@@ -184,6 +184,7 @@ func addFile(dir, filePath string, ignorePatterns []string) error {
 		return err
 	}
 
+	fmt.Printf("Added %s to the index.\n", filePath)
 	return nil
 }
 
@@ -290,10 +291,12 @@ func addAllFiles(dir string, ignorePatterns []string) error {
 func checkStatus(dir string) error {
 	trackrDir := filepath.Join(dir, ".trackr")
 
+	// Check if .trackr exists
 	if _, err := os.Stat(trackrDir); os.IsNotExist(err) {
 		return fmt.Errorf("not a Trackr repository (or any of the parent directories)")
 	}
 
+	// Read HEAD to find the current branch
 	headPath := filepath.Join(trackrDir, "HEAD")
 	headContent, err := os.ReadFile(headPath)
 	if err != nil {
@@ -372,12 +375,14 @@ func checkStatus(dir string) error {
 		return fmt.Errorf("error walking the file tree: %v", err)
 	}
 
+	// Identify deleted files
 	for file := range indexMap {
 		if !presentFiles[file] {
 			deletedFiles = append(deletedFiles, file)
 		}
 	}
 
+	// Display status
 	fmt.Printf("On branch %s\n", currentBranch)
 
 	if len(indexMap) > 0 {
