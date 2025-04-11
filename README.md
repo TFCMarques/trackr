@@ -72,4 +72,4 @@ trackr help
 
 This project is inspired by Git and aims to provide a simplified version to help understand the core concepts of version control systems.
 
-For more information on the challenge, visit codingchallenges.fyi/challenges/challenge-json-parser
+For more information on the challenge, visit [codingchallenges.fyi/challenges/challenge-git](codingchallenges.fyi/challenges/challenge-git)
